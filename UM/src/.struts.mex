@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="default" location="0,0" size="0,0">
+    <action name="notFound" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="error.jsp" />
+      </result>
+    </action>
+  </package>
+  <package name="user" location="178,10" size="225,283">
+    <action name="user!*" location="65,47" size="150,62">
+      <result name="showAllUser">
+        <resourceEdge source="showAllUser" routing="0" target="allUser.jsp" />
+      </result>
+      <result name="toShowUser">
+        <resourceEdge source="toShowUser" routing="0" target="testJSPPage.jsp" />
+      </result>
+      <result name="toShowArticles">
+        <resourceEdge source="toShowArticles" routing="0" target="showArticle.jsp" />
+      </result>
+    </action>
+    <action name="deptAction!*" location="65,232" size="150,41">
+      <result name="showDeptTrees">
+        <resourceEdge source="showDeptTrees" routing="0" target="deptTree.jsp" />
+      </result>
+    </action>
+  </package>
+  <webResource name="allUser.jsp" path="/allUser.jsp" location="513,30" size="150,55" />
+  <webResource name="showAllUsers.jsp" path="/showAllUsers.jsp" location="10,30" size="150,55" />
+  <webResource name="deptTree.jsp" path="/deptTree.jsp" location="512,205" size="150,55" />
+  <webResource name="error.jsp" path="/error.jsp" location="0,0" size="0,0" />
+  <webResource name="showAllUser.jsp" path="/showAllUser.jsp" location="0,0" size="0,0" />
+  <webResource name="showArticle.jsp" path="/showArticle.jsp" location="0,0" size="0,0" />
+  <webResource name="testJSPPage.jsp" path="/testJSPPage.jsp" location="0,0" size="0,0" />
+</Struts2Diagram>
+

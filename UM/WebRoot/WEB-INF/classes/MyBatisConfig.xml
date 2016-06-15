@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- 实体类路径 -->
+<typeAliases>
+   <typeAlias type="com.anbo.po.UserBean" alias="UserBean"/>
+   <typeAlias type="com.anbo.po.DeptBean" alias="DeptBean"/>
+   <typeAlias type="com.anbo.po.Article" alias="ArticleBean"/>
+</typeAliases>
+<!-- 不使用spring时，MyBatisConfig最原始的配置 -->
+<!--   <environments default="development">
+       <environment id="development"> 
+           <transactionManager type="JDBC" />
+                   <dataSource type="POOLED">
+                    <property name="driver" value="com.mysql.jdbc.Driver" />  Oracle:  oracle.jdbc.driver.OracleDriver -->
+                   <!--  <property name="url" value="jdbc:mysql://127.0.0.1:3306/um" /> Oracle:  jdbc:oracle:thin:@127.0.0.1:1521:ORCLNEW   ORCLNEW为Oracle的服务名称 -->
+                    <!-- <property name="username" value="root" /> 
+                    <property name="password" value="123" />   
+                   </dataSource>   
+             </environment> 
+        </environments> --> 
+        
+   <!-- 实体类映射文件路径 -->
+   <mappers>   
+    <mapper resource="com/anbo/po/UserBean.xml"/> 
+    <mapper resource="com/anbo/po/DeptBean.xml"/> 
+    <mapper resource="com/anbo/po/ArticleBean.xml"/>
+   </mappers>
+</configuration>

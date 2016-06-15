@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anbo.po.DeptBean">
+  <resultMap type="DeptBean" id="DeptBean">
+    <id property="id" column="id"/>
+    <result property="deptname" column="deptname"/>
+    <result property="fid" column="fid"/>
+    <result property="deptlevel" column="deptlevel"/>
+    <result property="memo" column="memo"/>
+    <result property="depttype" column="depttype"/>
+    <result property="adress" column="adress"/>
+    <result property="adresstype" column="adresstype"/>
+    <result property="postcode" column="postcode"/>
+    <result property="organcode" column="organcode"/>
+    <result property="isdel" column="isdel"/>
+  </resultMap>
+  <!-- 查询树特有的SQL -->
+  <select id="deptTree" resultType="map">
+      select LEVEL,t.*
+      	  from dept t
+		  where isdel='1'
+		  start with id = '89f9a66521114bd6b91c27da0b0d67b4'
+		  connect by prior id = fid 
+     		ORDER BY LEVEL DESC
+  </select>
+  <!-- 查询部门下的子部门 -->
+	<select id="queryChildDeptForEms" parameterType="map" resultType="map">
+		  select t.*
+      	  from dept t
+		  where isdel='1' and fid=#{deptId}
+	</select> 
+</mapper>

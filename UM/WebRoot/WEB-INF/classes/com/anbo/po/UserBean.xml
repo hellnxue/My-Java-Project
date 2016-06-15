@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anbo.po.UserBean">
+  <resultMap type="UserBean" id="UserBean">
+    <id property="userId" column="userId" jdbcType="INTEGER"/>
+    <result property="loginName" column="loginName" jdbcType="VARCHAR"/>
+    <result property="loginPwd" column="loginPwd" jdbcType="VARCHAR"/>
+    <result property="sex" column="sex" jdbcType="INTEGER"/>
+    <result property="birthday" column="birthday" jdbcType="VARCHAR"/>
+    <result property="email" column="email" jdbcType="VARCHAR"/>
+  </resultMap>
+    <!-- 验证用户登录信息1 -->
+  <select id="loginCheck" parameterType="UserBean" resultType="int">
+    select count(*) from t_user where loginName=#{loginName} and loginPwd=#{loginPwd}
+  </select>
+    <!-- 验证用户登录信息2 -->
+  <select id="selectUser" resultType="UserBean" parameterType="UserBean">
+    select * from t_user where loginName=#{loginName} and loginPwd=#{loginPwd}
+  </select>
+  <!-- 验证用户登录信息3 -->
+  <select id="selectUserInfoByParam" parameterType="java.util.Map" resultType="UserBean">
+     select * from t_user where loginName=#{loginName} and loginPwd=#{loginPwd}
+  </select>
+  <!-- 查询用户列表 -->
+  <select id="showAllUsers" resultMap="UserBean">
+    select * from t_user
+  </select>
+  <!-- 查询所有用户数量 -->
+  <select id="selectUserCount" resultType="int">
+   select count(userId) from t_user
+  </select>
+  <!-- 分页取用户数据 -->
+  <select id="getPaginationUsers" parameterType="java.util.Map" resultMap="UserBean">
+    select * from t_user LIMIT #{start},#{end}
+  </select>
+  <!-- 添加用户信息 -->
+  <select id="addUser" parameterType="UserBean">
+    insert into t_user(userId,loginName,loginPwd,sex,birthday,email) values(
+       #{userId,jdbcType=VARCHAR},
+        #{loginName,jdbcType=VARCHAR},
+         #{loginPwd,jdbcType=VARCHAR},
+          #{sex,jdbcType=VARCHAR},
+           #{birthday,jdbcType=VARCHAR},
+            #{email,jdbcType=VARCHAR}
+    )
+  </select>
+  <!-- 查询最大用户编号 -->
+  <select id="selectMaxUserId" resultType="int">
+      select max(userId) from t_user
+  </select>
+</mapper>

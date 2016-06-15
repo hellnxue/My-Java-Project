@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+  <!-- 此处乃使servlet与action共存所设置 -->
+   <constant name="struts.action.extension" value="action"></constant>
+   <!-- 指定每次配置文件更改后，自动重新加载配置，不用重启tomcat -->
+   <constant name="struts.configuration.xml.reload" value="true"/>
+    <!-- struts拦截访问项目时地址栏乱输导致的404错误  -->
+    <package name="default" extends="struts-default">
+	<default-action-ref name="notFound" />
+	<action name="notFound">
+	<result>/error.jsp</result>
+	</action>
+	</package>
+	
+	<package name="user" namespace="/user" extends="struts-default">
+	
+	
+	<interceptors>
+	<!-- struts2内置拦截器 -->
+	  <interceptor name="timer" class="com.opensymphony.xwork2.interceptor.TimerInterceptor"></interceptor> <!-- 部署timer拦截器，输出action的执行时间 --> 
+	 <interceptor name="logger" class="com.opensymphony.xwork2.interceptor.LoggingInterceptor"></interceptor> <!-- 输出action的名字-->
+	  <!-- 自定义拦截器 -->
+	  <interceptor name="myInterceptor1" class="com.anbo.myInterceptor.MyInterceptor1"></interceptor> 
+	  <!-- 堆栈 -->
+	  <interceptor-stack name="myStack">
+	    <interceptor-ref name="timer"></interceptor-ref>
+	    <interceptor-ref name="logger"></interceptor-ref> 
+	     <!-- 自定义拦截器 -->
+	   <interceptor-ref name="myInterceptor1"></interceptor-ref> 
+	     <!--  必须添加默认的拦截器defaultStack -->
+	    <interceptor-ref name="defaultStack"></interceptor-ref> 
+	  </interceptor-stack>
+	</interceptors>
+     <!-- 自动引用拦截器 -->
+     <default-interceptor-ref name="myStack"/> 
+	<!-- struts全局错误拦截 -->
+	<!-- 定义异常的跳转页面 -->
+	<global-results>
+	   <result name="errorsss">/error.jsp</result>
+	</global-results>
+	<!-- 定义要捕获的异常 -->
+	<global-exception-mappings>
+	  <exception-mapping result="errorsss" exception="java.lang.Exception">/error.jsp</exception-mapping>
+	</global-exception-mappings>
+	
+	  
+		<action name="user!*" class="com.anbo.action.UserAction" method="{1}">
+			
+			<result name="showAllUser">/allUser.jsp</result>
+			
+			<result name="toShowUser">/testJSPPage.jsp</result>
+			<result name="toShowArticles">/showArticle.jsp</result>
+			<result name="input">/index.jsp</result>
+			<!-- 添加拦截器(或者可以用一个引用拦截器default-interceptor-ref，不需要每个action都引用拦截器) -->
+			<!-- <interceptor-ref name="myStack"></interceptor-ref>	 -->	
+		</action>
+		<action name="deptAction!*" class="com.anbo.action.DeptAction" method="{1}">
+			<result name="showDeptTrees">/deptTree.jsp</result>
+		</action>	
+	</package>
+</struts>

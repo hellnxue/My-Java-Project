@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anbo.po.Article">
+  <resultMap type="ArticleBean" id="ArticleBean">
+    <id property="id" column="id" jdbcType="INTEGER"/>
+    <result property="userId" column="user_id" jdbcType="INTEGER"/>
+    <result property="title" column="title" jdbcType="VARCHAR"/>
+    <result property="content" column="content" jdbcType="INTEGER"/>
+    <!-- 映射 -->
+    <association property="user" javaType="UserBean" resultMap="UserBean"></association>
+  </resultMap>
+
+ <resultMap type="UserBean" id="UserBean">
+   
+    <result property="loginName" column="loginName" jdbcType="VARCHAR"/>
+    
+  </resultMap> 
+ <select id="selectArticleByUserId" parameterType="int" resultMap="ArticleBean">
+    SELECT a.title,a.content,b.loginName    from article a inner join t_user b  on a.user_id=b.userid where a.user_id=#{userId}
+    
+ </select>
+</mapper>

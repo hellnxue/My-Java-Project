@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE validation-config SYSTEM "validation-config.dtd">
+<validation-config lang="auto">
+	<form id="form1" show-error="error" show-type="all">
+		<field name="user.loginName" display-name="用户名" onfail="">
+			<depend name="required" />
+			<depend name="commonChar" />
+		</field>
+		<field name="user.loginPwd" display-name="密码">
+			<depend name="required" />
+			<depend name="commonChar" />
+		</field>
+		
+	</form>
+	
+</validation-config>

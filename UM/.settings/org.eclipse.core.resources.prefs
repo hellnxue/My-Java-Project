@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding//WebRoot/index.html=UTF-8
+encoding//WebRoot/static=UTF-8
+encoding//WebRoot/static/js/plugin/e.ecloud.js=UTF-8
+encoding//WebRoot/static/pkg=UTF-8
+encoding//src/com/anbo/action/UserAction.java=UTF-8
+encoding//src/com/anbo/dao=UTF-8
+encoding//src/com/anbo/dao/DeptDao.java=GBK
+encoding//src/com/anbo/dao/UserDAO.java=GBK
+encoding//src/com/anbo/dao/impl/UserDAOImpl.java=UTF-8
+encoding//src/com/anbo/po/UserBean.java=UTF-8
+encoding//src/com/anbo/util/Common.java=UTF-8
+encoding/<project>=GBK

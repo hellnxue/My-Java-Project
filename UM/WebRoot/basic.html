@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+	<title>Basic DataGrid - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.4.2/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.4.2/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.4.2/demo.css">
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery-easyui-1.4.2/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery-easyui-1.4.2/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="js/jquery-easyui-1.4.2/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript">
+	  $(function(){
+	     $("#dg").datagrid({
+	        pagination:true,
+	        collapsible:true,
+	        url:"datagrid_data1.json",
+	     	columns:[[
+	     	   {title:"Item ID",field:"itemid",width:80},
+	     	   {title:"产品",field:"productid",width:80, editor: {  
+                type: 'combobox',  
+                options: {  
+                    valueField: 'productid',  
+                    textField: 'productname', 
+                    method:"get",  
+                    url:'products.json', 
+                    required: true,
+                    handler:function(){
+                                        alert('something');
+
+                                    }  
+                }  
+             }},
+	     	   {title:"价格",field:"listprice",width:80},
+	     	   {title:"花费2dd3",field:"unitcost",width:80}
+	     	
+	     	]],
+	     	onClickRow:function(index,rowData){
+	     	//获得选中行指定列数据
+	     	  //alert(rowData.productid);
+	     	  //alert($("#dg").datagrid("getSelected").productid);
+	     	} 
+	     })
+	  
+	  
+	  })
+	  
+	  function updateActions(index) {  
+        $('#dg').datagrid('updateRow', {  
+        index: index,  
+        row: {}  
+    });  
+}  
+	</script>
+</head>
+<body>
+   <div><table id="dg"></table></div>
+
+	<!--  <h2>Basic DataGrid</h2>
+	<p>The DataGrid is created from markup, no JavaScript code needed.</p>
+	<div style="margin:20px 0;"></div>
+	
+	<table class="easyui-datagrid" title="Basic DataGrid" style="width:700px;height:250px"
+			data-options="singleSelect:true,collapsible:true,url:'datagrid_data1.json',method:'get'">
+		<thead>
+			<tr>
+				<th data-options="field:'itemid',width:80">Item ID</th>
+				<th data-options="field:'productid',width:100">Product</th>
+				<th data-options="field:'listprice',width:80,align:'right'">List Price</th>
+				<th data-options="field:'unitcost',width:80,align:'right'">Unit Cost</th>
+				<th data-options="field:'attr1',width:250">Attribute</th>
+				<th data-options="field:'status',width:60,align:'center'">Status</th>
+			</tr>
+		</thead>
+	</table>-->
+
+</body>
+</html>
